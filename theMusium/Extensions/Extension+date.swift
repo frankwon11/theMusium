@@ -24,6 +24,14 @@ extension Date {
         return dateString
     }
     
+    /// Date 타입을 월(영문)만을 골라서 문자열로 반환합니다; April
+    var monthFormat: String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MMMM"
+        let dateString = dateFormatter.string(from: self)
+        return dateString
+    }
+    
     /// Date 타입을 월(영문), 일만을 골라서 문자열로 반환합니다; April 18
     var monthDayFormat: String {
         let dateFormatter = DateFormatter()
@@ -31,6 +39,9 @@ extension Date {
         let dateString = dateFormatter.string(from: self)
         return dateString
     }
+    
+//    /// 요일의 심볼을 나타냅니다; Mon
+//    var weekdaySymbols = Calendar.current.shortWeekdaySymbols
     
     func isSameDate(targetDate: Date) -> Bool {
         return self.dailyMusicFormat == targetDate.dailyMusicFormat

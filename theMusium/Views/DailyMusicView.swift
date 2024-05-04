@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct MusicView: View {
+struct DailyMusicView: View {
     @State var progress: Double = 0.4
     @State private var showCaption: Bool = true
     @State private var isPlaying: Bool = true
@@ -55,6 +55,7 @@ struct MusicView: View {
             
             Spacer().frame(height: 20)
             
+            // TODO: 음악 정보 받아오기
             HStack (spacing: -10) {
                 Text("01:16")
                     .font(.custom("ShipporiMincho-SemiBold", size: 12))
@@ -90,6 +91,7 @@ struct MusicView: View {
             HStack{
                 Spacer()
                 
+                // TODO: 재생 동작 추가하기
                 Button(action: {
                     
                 }, label: {
@@ -129,5 +131,5 @@ struct BarcodeShapeView: View {
 
 
 #Preview {
-    MusicView(selectedDate: Date.now, dailyMusic: DailyMusic(date: "2024 Arpil 17", music: Music(title: "Don't look back in anger", artist: "Oasis", cover: "DontLookBackInAnger"), caption: "I'm Hungry"))
+    DailyMusicView(selectedDate: Date.now, dailyMusic: DailyMusic(date: Date.now, music: Music(title: "Don't look back in anger", artist: "Oasis", cover: "DontLookBackInAnger"), caption: "I'm Hungry"))
 }

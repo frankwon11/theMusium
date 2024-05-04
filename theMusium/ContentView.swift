@@ -23,7 +23,12 @@ struct ContentView: View {
                     
                     DottedLine()
                     
-                    MusicCalenderView(month: .now, selectedDate: $selectedDate, displayedYear: $displayedDate, dailyMusics: $contentVM.dailyMuscis).environmentObject(contentVM)
+                    MusicCalenderView(
+                        month: Date.now,
+                        selectedDate: $selectedDate,
+                        displayedYear: $displayedDate
+                    )
+                    .environmentObject(contentVM)
                     
                     DottedLine()
                     
@@ -41,7 +46,7 @@ struct ContentView: View {
                 AddTodayMusicView()
             }
             .navigationDestination(for: DailyMusic.self) { dailyMusic in
-                MusicView(selectedDate: selectedDate, dailyMusic: contentVM.dailyMuscis[DateManager.generalFormatter.string(from: selectedDate)] ?? DailyMusic(date: "2024 April 17", music: Music(title: "Error", artist: "Ash Island", cover: "DontLookBackInAnger"), caption: "404 NOT FOUND"))
+                DailyMusicView(selectedDate: selectedDate, dailyMusic:  contentVM.findDailyMusic(forDate: selectedDate)!)
             }
         } // NavigationStack
     } // body
@@ -66,7 +71,7 @@ struct ContentView: View {
                 })
             }// HStack
             HStack {
-                Text(displayedDate, formatter: DateManager.yearFormatter)
+                Text(displayedDate.yearFormat)
                     .font(.custom("ShipporiMincho-SemiBold", size: 30))
                     .foregroundStyle(Color("CaptionColor"))
                 Spacer()
@@ -79,7 +84,7 @@ struct ContentView: View {
     // MARK: - 선택한 날짜
     private var selectedDateRow: some View {
         HStack {
-            Text(selectedDate, formatter: DateManager.monthDayFormatter)
+            Text(selectedDate.monthDayFormat)
                 .font(.custom("ShipporiMincho-SemiBold", size: 20))
                 .foregroundStyle(.white)
             Spacer()
@@ -102,9 +107,12 @@ struct ContentView: View {
         let isAdded: Bool = contentVM.isAdded(selectedDate: selectedDate)
         
         if isAdded {
-            NavigationLink(value: contentVM.dailyMuscis[DateManager.generalFormatter.string(from: selectedDate)]) {
+            let selectedDailyMusic: DailyMusic = contentVM.findDailyMusic(forDate: selectedDate)!
+            
+            NavigationLink(value:
+                            selectedDailyMusic) {
                 HStack {
-                    Image(contentVM.dailyMuscis[DateManager.generalFormatter.string(from: selectedDate)]?.music.cover ?? "DontLookBackInAnger")
+                    Image(selectedDailyMusic.music.cover)
                         .resizable()
                         .aspectRatio(contentMode: .fill)
                         .frame(width: 100,height: 100)
@@ -115,27 +123,18 @@ struct ContentView: View {
                             .background(Color("TextColor"))
                         
                         /// 제목
-                        Text(contentVM.dailyMuscis[DateManager.generalFormatter.string(from: selectedDate)]?.music.title ?? "")
+                        Text(selectedDailyMusic.music.title)
                             .font(.custom("ShipporiMincho-SemiBold", size: 18))
                             .foregroundStyle(Color("TextColor"))
                             .frame(width: 240, alignment: .leading)
                         
                         /// 가수
-                        Text(contentVM.dailyMuscis[DateManager.generalFormatter.string(from: selectedDate)]?.music.artist ?? "")
+                        Text(selectedDailyMusic.music.artist)
                             .font(.custom("ShipporiMincho-SemiBold", size: 16))
                             .foregroundStyle(Color("CaptionColor"))
                             .frame(width: 240, alignment: .leading)
                         
                         Spacer()
-//                        /// entrance
-//                        HStack {
-//                            Spacer()
-//                            Text("entrance")
-//                                .font(.custom("ShipporiMincho-SemiBold", size: 16))
-//                                .foregroundStyle(Color("TextColor"))
-//                            Image(systemName: "arrow.uturn.right")
-//                                .foregroundStyle(Color("TextColor"))
-//                        }.padding(.horizontal)
                         
                         Divider()
                             .frame(minHeight: 1)

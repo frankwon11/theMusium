@@ -34,13 +34,20 @@ class ContentViewModel: ObservableObject {
 //    ]
     
     // TODO: SwiftData로 리팩토링
-    @Published var dailyMusics: [DailyMusic] = []
+    @Published var dailyMusics: [DailyMusic] = [
+        DailyMusic(date: Date.now, music: Music(title: "Nowitzki", artist: "Beenzino", cover: "Nowitzki"), caption: "Best Album of 2023")
+    ]
     
     /// 특정한 날에 음악이 추가되어 있는지 반환합니다.
     func isAdded(selectedDate: Date) -> Bool {
-        return dailyMusics.contains { dailyMusic in
-            var result = (dailyMusic.date == selectedDate ? true : false)
-            return result
+        return dailyMusics.contains { $0.date.dailyMusicFormat == selectedDate.dailyMusicFormat }
+    }
+    
+    /// 특정한 날의 음악 정보를 반환합니다.
+    func findDailyMusic(forDate date: Date) -> DailyMusic? {
+        if let index = dailyMusics.firstIndex(where: { $0.date.dailyMusicFormat == date.dailyMusicFormat }) {
+            return dailyMusics[index]
         }
+        return nil
     }
 }

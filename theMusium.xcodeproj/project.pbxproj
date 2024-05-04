@@ -12,7 +12,7 @@
 		FB8DDF932BD6D1FE0038BD95 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB8DDF922BD6D1FE0038BD95 /* Item.swift */; };
 		FB8DDF952BD6D1FF0038BD95 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FB8DDF942BD6D1FF0038BD95 /* Assets.xcassets */; };
 		FB8DDF982BD6D1FF0038BD95 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FB8DDF972BD6D1FF0038BD95 /* Preview Assets.xcassets */; };
-		FB8DDFA02BD6D2D10038BD95 /* MusicView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB8DDF9F2BD6D2D10038BD95 /* MusicView.swift */; };
+		FB8DDFA02BD6D2D10038BD95 /* DailyMusicView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB8DDF9F2BD6D2D10038BD95 /* DailyMusicView.swift */; };
 		FB8DDFA22BD6D2E50038BD95 /* MusicSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB8DDFA12BD6D2E50038BD95 /* MusicSearchView.swift */; };
 		FB8DDFA42BD6D2FA0038BD95 /* AddTodayMusicView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB8DDFA32BD6D2FA0038BD95 /* AddTodayMusicView.swift */; };
 		FB8DDFA72BD6D3200038BD95 /* AddTodayMusicButtonLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB8DDFA62BD6D3200038BD95 /* AddTodayMusicButtonLabel.swift */; };
@@ -38,7 +38,7 @@
 		FB8DDF922BD6D1FE0038BD95 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		FB8DDF942BD6D1FF0038BD95 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FB8DDF972BD6D1FF0038BD95 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		FB8DDF9F2BD6D2D10038BD95 /* MusicView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicView.swift; sourceTree = "<group>"; };
+		FB8DDF9F2BD6D2D10038BD95 /* DailyMusicView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyMusicView.swift; sourceTree = "<group>"; };
 		FB8DDFA12BD6D2E50038BD95 /* MusicSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicSearchView.swift; sourceTree = "<group>"; };
 		FB8DDFA32BD6D2FA0038BD95 /* AddTodayMusicView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTodayMusicView.swift; sourceTree = "<group>"; };
 		FB8DDFA62BD6D3200038BD95 /* AddTodayMusicButtonLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTodayMusicButtonLabel.swift; sourceTree = "<group>"; };
@@ -115,7 +115,7 @@
 		FB8DDF9E2BD6D2C00038BD95 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				FB8DDF9F2BD6D2D10038BD95 /* MusicView.swift */,
+				FB8DDF9F2BD6D2D10038BD95 /* DailyMusicView.swift */,
 				FB8DDFA12BD6D2E50038BD95 /* MusicSearchView.swift */,
 				FB8DDFA32BD6D2FA0038BD95 /* AddTodayMusicView.swift */,
 			);
@@ -266,7 +266,7 @@
 				FB8DDFB22BD6D3A90038BD95 /* Extension+date.swift in Sources */,
 				FB8DDFBA2BD6D4480038BD95 /* MusicSearchRow.swift in Sources */,
 				FB8DDFB02BD6D3870038BD95 /* Music.swift in Sources */,
-				FB8DDFA02BD6D2D10038BD95 /* MusicView.swift in Sources */,
+				FB8DDFA02BD6D2D10038BD95 /* DailyMusicView.swift in Sources */,
 				FB8DDFB82BD6D4160038BD95 /* MusicCalendarView.swift in Sources */,
 				FB8DDF8F2BD6D1FE0038BD95 /* theMusiumApp.swift in Sources */,
 			);
