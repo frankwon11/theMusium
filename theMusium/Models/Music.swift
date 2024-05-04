@@ -8,6 +8,7 @@
 import SwiftUI
 
 // 음악 모델
+// TODO: MusicKit 사용
 struct Music: Equatable, Hashable {
     var title: String
     var artist: String

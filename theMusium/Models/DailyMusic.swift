@@ -9,7 +9,7 @@ import SwiftUI
 
 // 한 날짜에 기록된 음악
 struct DailyMusic: Hashable, Equatable {
-    let date: String // "YYYY MMMM d"
+    let date: Date // "YYYY MMMM d"
     var music: Music
     var caption: String
 }

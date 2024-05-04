@@ -8,19 +8,18 @@
 import SwiftUI
 
 struct DateTitleView: View {
-    // TODO: String으로 바꿔서 처리하기
     var date: Date
 
     var body: some View {
         VStack {
             HStack (alignment: .bottom) {
-                Text(date, formatter: DateManager.monthDayFormatter)
+                Text(date.monthDayFormat)
                     .font(.custom("ShipporiMincho-SemiBold", size: 34))
                     .foregroundStyle(Color("TextColor"))
                 Spacer()
             }// HStack
             HStack {
-                Text(date, formatter: DateManager.yearFormatter)
+                Text(date.yearFormat)
                     .font(.custom("ShipporiMincho-SemiBold", size: 30))
                     .foregroundStyle(Color("CaptionColor"))
                 Spacer()

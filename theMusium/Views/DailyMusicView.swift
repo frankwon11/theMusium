@@ -7,54 +7,29 @@
 
 import SwiftUI
 
-struct MusicView: View {
+struct DailyMusicView: View {
     @State var progress: Double = 0.4
-    @State private var showCaption: Bool = true
+    @State private var showCaption: Bool = false
     @State private var isPlaying: Bool = true
+    
     var selectedDate: Date
+    // TODO: 수정 동작 추가
     var dailyMusic: DailyMusic
     
     var body: some View {
         VStack {
+            // TODO: 수정 동작 추가
             DateTitleView(date: selectedDate)
             
             if showCaption {
-                Image(dailyMusic.music.cover)
-                    .resizable()
-                    .aspectRatio(contentMode: .fill)
-                    .frame(width: 350, height: 350)
-                    .clipShape(RoundedRectangle(cornerRadius: 20))
-                    .padding(.horizontal)
-                    .onTapGesture {
-                        withAnimation {
-                            showCaption = false
-                        }
-                    }
+                captionView
             } else {
-                RoundedRectangle(cornerRadius: 20)
-                    .foregroundStyle(.subBackground)
-                    .frame(width: 350, height: 350)
-                    .padding(.horizontal)
-                    .overlay(
-                        VStack(alignment: .leading) {
-                            Text(dailyMusic.caption)
-                                .font(.custom("ShipporiMincho-Bold", size: 24))
-                                .foregroundStyle(Color("TextColor"))
-                                .frame(width: 300, alignment: .leading)
-                            Spacer()
-                        }
-                        .padding()
-                    )
-                    .onTapGesture {
-                        withAnimation {
-                            showCaption = true
-                        }
-                    }
+                musicCoverView
             }
-            
             
             Spacer().frame(height: 20)
             
+            // TODO: 음악 정보 받아오기
             HStack (spacing: -10) {
                 Text("01:16")
                     .font(.custom("ShipporiMincho-SemiBold", size: 12))
@@ -90,6 +65,7 @@ struct MusicView: View {
             HStack{
                 Spacer()
                 
+                // TODO: 재생 동작 추가하기
                 Button(action: {
                     
                 }, label: {
@@ -108,8 +84,48 @@ struct MusicView: View {
             Spacer()
         }.background(Color("BackgroundColor"))
     }
+    
+    
+    // MARK: - 음악 앨범 커버 뷰
+    private var musicCoverView: some View {
+        Image(dailyMusic.music.cover)
+            .resizable()
+            .aspectRatio(contentMode: .fill)
+            .frame(width: 350, height: 350)
+            .clipShape(RoundedRectangle(cornerRadius: 20))
+            .padding(.horizontal)
+            .onTapGesture {
+                withAnimation {
+                    showCaption = true
+                }
+            }
+    }
+    
+    // MARK: - 캡션 뷰
+    private var captionView: some View {
+        RoundedRectangle(cornerRadius: 20)
+            .foregroundStyle(.subBackground)
+            .frame(width: 350, height: 350)
+            .padding(.horizontal)
+            .overlay(
+                VStack(alignment: .leading) {
+                    Text(dailyMusic.caption)
+                        .font(.custom("ShipporiMincho-Bold", size: 24))
+                        .foregroundStyle(Color("TextColor"))
+                        .frame(width: 300, alignment: .leading)
+                    Spacer()
+                }
+                .padding()
+            )
+            .onTapGesture {
+                withAnimation {
+                    showCaption = false
+                }
+            }
+    }
 }
 
+// TODO: 음악 연결 추가
 struct BarcodeShapeView: View {
     // Array that represents the widths of the barcode's bars
     let barWidths: [CGFloat] = [3, 1, 2, 3, 1, 2, 1, 3, 1, 2, 3, 1, 2, 3, 1, 2, 3, 1, 2, 1, 3, 1, 2, 3, 1, 2, 1, 1, 2, 3, 1, 2, 3, 4, 1, 4, 1, 2, 3, 1, 2, 3, 1, 2, 1, 2, 3, 1, 2, 2, 2, 3, 4, 1, 4, 1, 2, 3, 1, 2, 3, 1, 2, 1, 2, 3, 1, 2, 2, 1, 1]
@@ -129,5 +145,5 @@ struct BarcodeShapeView: View {
 
 
 #Preview {
-    MusicView(selectedDate: Date.now, dailyMusic: DailyMusic(date: "2024 Arpil 17", music: Music(title: "Don't look back in anger", artist: "Oasis", cover: "DontLookBackInAnger"), caption: "I'm Hungry"))
+    DailyMusicView(selectedDate: Date.now, dailyMusic: DailyMusic(date: Date.now, music: Music(title: "Don't look back in anger", artist: "Oasis", cover: "DontLookBackInAnger"), caption: "I'm Hungry"))
 }
