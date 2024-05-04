@@ -8,11 +8,26 @@
 import SwiftUI
 
 extension Date {
-    /// Date 타입을 다음 포맷으로 변환 후 반환합니다.
-    /// 2024 April 18
+    /// Date 타입을 "2024 April 18" 형식의 문자열로 반환합니다.
     var dailyMusicFormat: String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "YYYY MMMM d"
+        let dateString = dateFormatter.string(from: self)
+        return dateString
+    }
+    
+    /// Date 타입을 년도만 골라서 문자열로 반환합니다; 2024
+    var yearFormat: String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "YYYY"
+        let dateString = dateFormatter.string(from: self)
+        return dateString
+    }
+    
+    /// Date 타입을 월(영문), 일만을 골라서 문자열로 반환합니다; April 18
+    var monthDayFormat: String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MMMM d"
         let dateString = dateFormatter.string(from: self)
         return dateString
     }

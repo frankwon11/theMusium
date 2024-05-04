@@ -33,14 +33,14 @@ class ContentViewModel: ObservableObject {
 //        "2024 April 18": DailyMusic(date: "2024 Arpil 18", music: Music(title: "Bitter", artist: "Palace", cover: "Bitter"), caption: "Shout Out to Milou"),
 //    ]
     
+    // TODO: SwiftData로 리팩토링
     @Published var dailyMusics: [DailyMusic] = []
     
+    /// 특정한 날에 음악이 추가되어 있는지 반환합니다.
     func isAdded(selectedDate: Date) -> Bool {
         return dailyMusics.contains { dailyMusic in
             var result = (dailyMusic.date == selectedDate ? true : false)
             return result
         }
-        
-//        return dailyMusics.contains(DateManager.generalFormatter.string(from: selectedDate))
     }
 }
