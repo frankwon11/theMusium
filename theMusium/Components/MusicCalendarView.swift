@@ -15,7 +15,6 @@ struct MusicCalenderView: View {
     
     @Binding var selectedDate: Date // 선택한 날짜
     @Binding var displayedYear: Date // 화면에 보이는 날짜
-//    @Binding var dailyMusics: [DailyMusic]
     
     var body: some View {
         VStack {
@@ -81,22 +80,9 @@ struct MusicCalenderView: View {
                         let date: Date = getDate(for: index - firstWeekday)
                         let day: Int = index - firstWeekday + 1
                         
-//                        // 클릭했는지
-//                        let isSelected: Bool = date.isSameDate(targetDate: selectedDate)
-//                                                
-//                        // 이미 추가했는지
-//                        let isAdded: Bool = contentVM.isAdded(selectedDate: date)
-//                        
-//                        CellView(day: day, isSelected: isSelected, date: date)
-//                            .onTapGesture {
-//                                selectedDate = date
-//                                print(isAdded)
-//                                print(selectedDate.dailyMusicFormat)
-//                            }
                         cellView(date: date, day: day)
                             .onTapGesture {
                                selectedDate = date
-//                               print(isAdded)
                                print(selectedDate.dailyMusicFormat)
                            }
                     }
@@ -134,64 +120,11 @@ struct MusicCalenderView: View {
                     .font(isSelected ? .custom("ShipporiMincho-ExtraBold", size: 16) : .custom("ShipporiMincho-Regular", size: 16))
                     .foregroundColor(Color("TextColor"))
                     .padding(.bottom, 4)
-                
             }
             .frame(width: 40, height: 40)
             .padding([.top,.bottom], 0)
     } // cellView
 }
-
-
-//private struct CellView: View {
-//    // TODO: 저장된 데이터에 접근
-//    
-//    var day: Int
-//    var isSelected: Bool
-//    var date: Date
-//    var isAdded: Bool = false
-//    
-////    init(day: Int, isSelected: Bool, date: Date) {
-////        self.day = day
-////        self.isSelected = isSelected
-////        self.date = date
-////        self.isAdded = contentVM.isAdded(selectedDate: date)
-////    }
-//    init(day: Int, isSelected: Bool, date: Date, isAdded: Bool) {
-//        self.day = day
-//        self.isSelected = isSelected
-//        self.date = date
-//        self.isAdded = contentVM.isAdded(selectedDate: date)
-//    }
-//    
-//    var body: some View {
-//        ZStack (alignment: Alignment(horizontal: .center, vertical: .center)){
-//            if isAdded {
-//                let selectedDailyMusic: DailyMusic = contentVM.findDailyMusic(forDate: date)!
-//                
-//                RoundedRectangle(cornerRadius: 6)
-//                    .size(CGSize(width: 40, height: 40))
-//                    .foregroundColor(.tint)
-//                    .opacity(isSelected ? 1.0 : 0.4)
-//                
-//                Image(selectedDailyMusic.music.cover)
-//                    .resizable()
-//                    .aspectRatio(contentMode: .fit)
-//                    .frame(width: 36, height: 36)
-//                    .foregroundColor(.black)
-//                    .opacity(isSelected ? 1.0 : 0.4)
-//                    .clipShape(RoundedRectangle(cornerRadius: 6))
-//            }
-//            
-//            Text(String(day))
-//                .font(isSelected ? .custom("ShipporiMincho-ExtraBold", size: 16) : .custom("ShipporiMincho-Regular", size: 16))
-//                .foregroundColor(Color("TextColor"))
-//                .padding(.bottom, 4)
-//            
-//        }
-//        .frame(width: 40, height: 40)
-//        .padding([.top,.bottom], 0)
-//    }
-//}
 
 // MARK: - 내부 메서드
 private extension MusicCalenderView {
@@ -228,20 +161,6 @@ private extension MusicCalenderView {
         }
     }
 }
-
-//// MARK: - Static 프로퍼티
-//extension MusicCalenderView {
-//    static let dateFormatter: DateFormatter = {
-//        let formatter = DateFormatter()
-//        formatter.dateFormat = "MMMM"
-//        formatter.locale = Locale(identifier: "ko_KR")
-//        return formatter
-//    }()
-//    
-//    static var weekdaySymbols = Calendar.current.shortWeekdaySymbols
-//}
-
-
 
 #Preview {
     MusicCalenderView(

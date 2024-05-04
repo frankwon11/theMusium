@@ -42,11 +42,15 @@ struct ContentView: View {
                     addTodayMusicButton
                 } // VStack
             } // ZStack
+            // TODO: pathType 정의
             .navigationDestination(for: String.self) { string in
                 AddTodayMusicView()
             }
             .navigationDestination(for: DailyMusic.self) { dailyMusic in
-                DailyMusicView(selectedDate: selectedDate, dailyMusic:  contentVM.findDailyMusic(forDate: selectedDate)!)
+                DailyMusicView(
+                    selectedDate: selectedDate,
+                    dailyMusic: contentVM.findDailyMusic(forDate: selectedDate)!
+                )
             }
         } // NavigationStack
     } // body
@@ -155,7 +159,8 @@ struct ContentView: View {
 
 
 #Preview {
-    ContentView().environmentObject(ContentViewModel())
+    ContentView()
+        .environmentObject(ContentViewModel())
 }
 
 //
